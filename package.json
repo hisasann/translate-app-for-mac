@@ -23,7 +23,8 @@
       "!README.md",
       "!dist/**/*",
       "!node_modules/**/*",
-      "node_modules/electron/**/*"
+      "node_modules/electron/**/*",
+      "node_modules/robotjs/**/*"
     ],
     "mac": {
       "category": "public.app-category.productivity",
@@ -85,7 +86,8 @@
     "electron-builder": "^26.0.12"
   },
   "dependencies": {
-    "axios": "^1.7.0"
+    "axios": "^1.7.0",
+    "robotjs": "^0.6.0"
   },
   "keywords": [
     "translate",

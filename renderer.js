@@ -1,3 +1,5 @@
+const { ipcRenderer } = require('electron');
+
 class TranslateApp {
     constructor() {
         this.inputTextarea = document.getElementById('englishText');
@@ -12,6 +14,7 @@ class TranslateApp {
         this.currentDirection = 'en-ja'; // 'en-ja' または 'ja-en'
         
         this.initializeEventListeners();
+        this.setupIPC();
     }
     
     initializeEventListeners() {
@@ -22,6 +25,22 @@ class TranslateApp {
         });
         
         this.inputTextarea.focus();
+    }
+    
+    setupIPC() {
+        // メインプロセスからのテキスト設定要求を受信
+        ipcRenderer.on('set-input-text', (_, text) => {
+            this.setInputText(text);
+        });
+    }
+    
+    setInputText(text) {
+        // 左側のペイン（入力エリア）にテキストを設定
+        this.inputTextarea.value = text;
+        this.inputTextarea.focus();
+        
+        // テキスト入力処理をトリガー（翻訳を開始）
+        this.handleTextInput();
     }
     
     // 言語を検出する関数
