@@ -1,0 +1,100 @@
+{
+  "name": "translate-app",
+  "version": "1.0.0",
+  "description": "🌍 英語⇄日本語双方向翻訳アプリ",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --inspect=5858",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.yourname.translate-app",
+    "productName": "Translate App",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!README.md",
+      "!dist/**/*",
+      "!node_modules/**/*",
+      "node_modules/electron/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "axios": "^1.7.0"
+  },
+  "keywords": [
+    "translate",
+    "translation",
+    "english",
+    "japanese",
+    "electron",
+    "desktop-app"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

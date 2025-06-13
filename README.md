@@ -1,0 +1,136 @@
+# 🌍 Translate App
+
+美しい黄色ベースのデザインを持つ、英語⇄日本語双方向翻訳アプリです。言語を自動検出して適切な方向に翻訳します。
+
+## ✨ 特徴
+
+- 🔄 **自動言語検出**: 英語・日本語を自動検出して双方向翻訳
+- ⚡ **リアルタイム翻訳**: 入力1秒後に自動翻訳開始
+- 🎨 **美しいUI**: 黄色ベースのモダンなグラデーションデザイン
+- 🌍 **地球儀アイコン**: アニメーション付きの3D地球儀アイコン
+- 📱 **レスポンシブ**: デスクトップ・モバイル両対応
+- 🌟 **豊富なエフェクト**: ホバー・フォーカス・アニメーション効果
+
+## 🚀 インストール・実行方法
+
+### 開発環境での実行
+
+1. **依存関係をインストール**:
+```bash
+npm install
+```
+
+2. **アプリケーションを起動**:
+```bash
+npm start
+```
+
+### 📦 単体アプリとしてビルド
+
+#### 1. electron-builderをインストール
+```bash
+npm install --save-dev electron-builder
+```
+
+#### 2. package.jsonにビルド設定を追加
+```json
+{
+  "scripts": {
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
+  },
+  "build": {
+    "appId": "com.yourname.translate-app",
+    "productName": "Translate App",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules",
+      "node_modules/electron/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.icns"
+    },
+    "win": {
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "icon": "assets/icon.png"
+    }
+  }
+}
+```
+
+#### 3. ビルド実行
+```bash
+# macOS用アプリをビルド
+npm run build:mac
+
+# Windows用アプリをビルド（macOSでも可能）
+npm run build:win
+
+# Linux用アプリをビルド
+npm run build:linux
+
+# 全プラットフォーム用をビルド
+npm run build
+```
+
+#### 4. アプリの配布
+- ビルド完了後、`dist/`フォルダに実行可能なアプリが生成されます
+- macOS: `.app`ファイル
+- Windows: `.exe`ファイル
+- Linux: `AppImage`ファイル
+
+## 🎯 使い方
+
+1. **英語→日本語翻訳**: 英語を入力すると自動的に日本語に翻訳
+2. **日本語→英語翻訳**: 日本語を入力すると自動的に英語に翻訳
+3. **言語ラベル**: 入力言語に応じてラベルが自動切り替え
+4. **クリア機能**: 「クリア」ボタンで全てリセット
+
+## 🛠 技術スタック
+
+- **Electron** - デスクトップアプリ化
+- **HTML/CSS/JavaScript** - フロントエンド
+- **Google Translate API** - 翻訳エンジン
+- **SVG** - カスタム地球儀アイコン
+- **CSS Animations** - 豊富なアニメーション効果
+
+## 📋 システム要件
+
+- **macOS**: 10.11 El Capitan以降
+- **Windows**: Windows 7以降
+- **Linux**: Ubuntu 14.04以降
+- **メモリ**: 512MB以上
+- **インターネット接続**: 翻訳機能に必要
+
+## ⚠️ 注意事項
+
+- インターネット接続が必要です
+- Google翻訳の無料APIを使用しているため、大量の翻訳には制限がある場合があります
+- 初回起動時にセキュリティ警告が表示される場合がありますが、信頼できるアプリとして許可してください
+
+## 🔧 カスタマイズ
+
+### アイコンの変更
+1. `assets/`フォルダを作成
+2. 以下のファイルを配置:
+   - `icon.icns` (macOS用、512x512px)
+   - `icon.ico` (Windows用、256x256px)
+   - `icon.png` (Linux用、512x512px)
+
+### 配色の変更
+`styles.css`の以下の部分を編集:
+```css
+background: linear-gradient(135deg, #ffd700 0%, #ffb347 50%, #ffa500 100%);
+```
+
+## 🤝 ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。
