@@ -131,6 +131,34 @@ npm run build
 background: linear-gradient(135deg, #ffd700 0%, #ffb347 50%, #ffa500 100%);
 ```
 
+## 📊 プレゼンテーション
+
+Claude Codeを使った開発体験を紹介するスライドを公開しています：
+
+🎯 **[Claude Codeで翻訳アプリを作ってみた](https://translate-app-for-r5m7n6wk8-yoshiyuki-hisamatsus-projects.vercel.app/slides.html)**
+
+### 📝 スライドの生成・デプロイ方法
+
+#### 1. Marpでスライド生成
+```bash
+# Marp CLIをインストール
+npm install -g @marp-team/marp-cli
+
+# Markdownからスライド生成
+marp claude-code-presentation.md --html --output slides.html
+```
+
+#### 2. Vercelにデプロイ
+```bash
+# Vercelにログイン
+npx vercel login
+
+# プロダクションデプロイ
+npx vercel --prod --yes
+```
+
+スライドではClaude Codeの高速開発体験と、ChatGPTとの使い分けについて紹介しています。
+
 ## 🤝 ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。

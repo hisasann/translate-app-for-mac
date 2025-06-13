@@ -46,3 +46,4 @@ Thumbs.db
 
 # Electron specific
 .electron-builder.env
+.vercel
