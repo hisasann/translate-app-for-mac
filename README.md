@@ -13,7 +13,9 @@
 
 ## 🚀 インストール・実行方法
 
-### 開発環境での実行
+このアプリは **Electronデスクトップアプリ** と **Web版** の両方で利用できます。
+
+### 🖥️ Electronアプリとして実行
 
 1. **依存関係をインストール**:
 ```bash
@@ -24,6 +26,36 @@ npm install
 ```bash
 npm start
 ```
+
+### 🌐 Web版として実行
+
+1. **Web版をビルド**:
+```bash
+npm run build:web
+```
+
+2. **ローカルサーバーで起動**:
+```bash
+npm run serve:web
+```
+
+3. **ブラウザでアクセス**: http://localhost:3000
+
+### 🚀 Vercelにデプロイ
+
+Web版をVercelにデプロイできます：
+
+```bash
+# Vercelにログイン
+npx vercel login
+
+# プロダクションデプロイ
+npx vercel --prod --yes
+```
+
+デプロイ後は以下のURLでアクセス可能：
+- **翻訳アプリ**: https://your-app.vercel.app/
+- **プレゼンテーション**: https://your-app.vercel.app/slides
 
 ### 📦 単体アプリとしてビルド
 
@@ -96,11 +128,23 @@ npm run build
 
 ## 🛠 技術スタック
 
+### 🖥️ デスクトップ版（Electron）
 - **Electron** - デスクトップアプリ化
 - **HTML/CSS/JavaScript** - フロントエンド
 - **Google Translate API** - 翻訳エンジン
+- **Global Shortcuts** - システム全体でのショートカット
+- **IPC通信** - メイン・レンダラープロセス間通信
+
+### 🌐 Web版
+- **Pure HTML/CSS/JavaScript** - フレームワークレス
+- **Google Translate API** - 翻訳エンジン（CORS制限あり）
+- **Responsive Design** - モバイル対応
+- **PWA対応** - プログレッシブWebアプリ機能
+
+### 🎨 共通
 - **SVG** - カスタム地球儀アイコン
 - **CSS Animations** - 豊富なアニメーション効果
+- **Gradient Design** - 美しい黄色グラデーション
 
 ## 📋 システム要件
 

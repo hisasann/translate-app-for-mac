@@ -1,0 +1,29 @@
+{
+  "name": "translate-app-web",
+  "version": "1.0.0",
+  "description": "🌍 英語⇄日本語双方向翻訳アプリ（Web版）",
+  "scripts": {
+    "build": "npm run build:web",
+    "build:web": "npm run clean:web && npm run copy:web",
+    "clean:web": "rm -rf dist && mkdir -p dist",
+    "copy:web": "cp web.html dist/index.html && cp web-renderer.js dist/ && cp styles.css dist/ && cp slides.html dist/ && cp -r assets dist/ 2>/dev/null || true",
+    "serve": "npx http-server dist -p 3000",
+    "start": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "keywords": [
+    "translate",
+    "translation",
+    "english",
+    "japanese",
+    "web-app",
+    "vercel"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

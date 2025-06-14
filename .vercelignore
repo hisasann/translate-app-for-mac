@@ -1,5 +1,21 @@
-node_modules
-dist
-.git
+# Electron関連ファイル
+main.js
+renderer.js
+test-electron.js
+playwright.config.js
+
+# 開発・テスト関連
+node_modules/
+.git/
 *.log
+test-results/
+playwright-report/
+
+# Electronビルド成果物
+dist/mac/
+dist/win/
+dist/linux/
+
+# その他
 .DS_Store
+*.tmp
