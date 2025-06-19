@@ -15,7 +15,9 @@
     "copy:web": "cp web.html dist/index.html && cp web-renderer.js dist/ && cp styles.css dist/ && cp slides.html dist/ && cp -r assets dist/ 2>/dev/null || true",
     "serve:web": "npx http-server dist -p 3000 -o",
     "test:web": "npm run build:web && npm run serve:web",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "build": {
     "appId": "com.yourname.translate-app",
@@ -87,9 +89,12 @@
     }
   },
   "devDependencies": {
+    "@eslint/js": "^9.29.0",
     "@playwright/test": "^1.53.0",
     "electron": "^31.0.0",
     "electron-builder": "^26.0.12",
+    "eslint": "^8.57.1",
+    "globals": "^16.2.0",
     "http-server": "^14.1.1",
     "playwright": "^1.53.0"
   },
