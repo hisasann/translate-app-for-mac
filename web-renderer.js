@@ -1,4 +1,17 @@
 // Web版用のレンダラー（Electron APIを使わない版）
+import { 
+  detectLanguage, 
+  getTranslationDirection, 
+  getLanguageDisplayName, 
+  getPlaceholderText 
+} from './src/utils/languageUtils.mjs';
+import { 
+  buildTranslateUrl, 
+  parseTranslateResponse, 
+  getLanguagePair, 
+  isTranslatable 
+} from './src/utils/translateUtils.mjs';
+
 class TranslateApp {
     constructor() {
         this.inputTextarea = document.getElementById('englishText');
@@ -28,28 +41,11 @@ class TranslateApp {
         this.inputTextarea.focus();
     }
     
-    // 言語を検出する関数
-    detectLanguage(text) {
-        // 日本語の文字（ひらがな、カタカナ、漢字）を含むかチェック
-        const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/;
-        return japaneseRegex.test(text) ? 'ja' : 'en';
-    }
-    
     // UIを更新する関数
     updateUI(inputLang, outputLang) {
-        const labels = {
-            'en': '英語',
-            'ja': '日本語'
-        };
-        
-        const placeholders = {
-            'en': '英語のテキストを入力してください...',
-            'ja': '日本語のテキストを入力してください...'
-        };
-        
-        this.inputLabel.textContent = labels[inputLang];
-        this.outputLabel.textContent = labels[outputLang];
-        this.inputTextarea.placeholder = placeholders[inputLang];
+        this.inputLabel.textContent = getLanguageDisplayName(inputLang);
+        this.outputLabel.textContent = getLanguageDisplayName(outputLang);
+        this.inputTextarea.placeholder = getPlaceholderText(inputLang);
         this.outputTextarea.placeholder = '翻訳結果が表示されます...';
     }
     
@@ -60,15 +56,15 @@ class TranslateApp {
             clearTimeout(this.translateTimeout);
         }
         
-        if (text.length > 0) {
+        if (isTranslatable(text)) {
             // 言語を検出
-            const detectedLang = this.detectLanguage(text);
-            const newDirection = detectedLang === 'ja' ? 'ja-en' : 'en-ja';
+            const detectedLang = detectLanguage(text);
+            const newDirection = getTranslationDirection(detectedLang);
             
             // 翻訳方向が変わった場合はUIを更新
             if (newDirection !== this.currentDirection) {
                 this.currentDirection = newDirection;
-                const [inputLang, outputLang] = newDirection.split('-');
+                const [inputLang, outputLang] = getLanguagePair(newDirection);
                 this.updateUI(inputLang, outputLang);
             }
             
@@ -83,7 +79,7 @@ class TranslateApp {
     async translateText() {
         const text = this.inputTextarea.value.trim();
         
-        if (!text) {
+        if (!isTranslatable(text)) {
             return;
         }
         
@@ -102,22 +98,15 @@ class TranslateApp {
     }
     
     async callGoogleTranslate(text) {
-        const [sourceLang, targetLang] = this.currentDirection.split('-');
+        const [sourceLang, targetLang] = getLanguagePair(this.currentDirection);
         
         // Web版では直接Google Translate APIを呼び出す
         // CORS制限を回避するため、プロキシサーバーまたはサーバーサイド実装が必要
         // ここでは簡易的な実装を示す
         try {
-            const url = 'https://translate.googleapis.com/translate_a/single';
-            const params = new URLSearchParams({
-                client: 'gtx',
-                sl: sourceLang,
-                tl: targetLang,
-                dt: 't',
-                q: text
-            });
+            const url = buildTranslateUrl(text, sourceLang, targetLang);
             
-            const response = await fetch(`${url}?${params}`, {
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
@@ -129,12 +118,7 @@ class TranslateApp {
             }
             
             const data = await response.json();
-            
-            if (!data || !data[0] || !Array.isArray(data[0])) {
-                throw new Error('Invalid response format');
-            }
-            
-            return data[0].map(item => item[0]).join('');
+            return parseTranslateResponse(data);
         } catch (error) {
             // フォールバック: 簡易的な翻訳（デモ用）
             console.warn('Google Translate API失敗、デモ翻訳を使用:', error);
