@@ -16,8 +16,12 @@ class TranslateApp {
   constructor() {
     this.inputTextarea = document.getElementById('englishText');
     this.outputTextarea = document.getElementById('japaneseText');
-    this.inputLabel = document.querySelector('.input-section .language-selector label');
-    this.outputLabel = document.querySelector('.output-section .language-selector label');
+    this.inputLabel = document.querySelector(
+      '.input-section .language-selector label'
+    );
+    this.outputLabel = document.querySelector(
+      '.output-section .language-selector label'
+    );
     this.clearBtn = document.getElementById('clearBtn');
     this.loading = document.getElementById('loading');
     this.translateTimeout = null;
@@ -105,7 +109,9 @@ class TranslateApp {
       this.outputTextarea.style.color = '#475569';
     } catch (error) {
       console.error('Translation error:', error);
-      this.showError('翻訳に失敗しました。インターネット接続を確認してください。');
+      this.showError(
+        '翻訳に失敗しました。インターネット接続を確認してください。'
+      );
     } finally {
       this.showLoading(false);
     }
