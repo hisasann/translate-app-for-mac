@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "🌍 英語⇄日本語双方向翻訳アプリ",
   "main": "main.js",
-  "type": "module",
   "scripts": {
     "start": "electron .",
     "dev": "electron . --inspect=5858",

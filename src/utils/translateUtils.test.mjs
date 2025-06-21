@@ -4,7 +4,7 @@ import {
   parseTranslateResponse, 
   getLanguagePair, 
   isTranslatable 
-} from './translateUtils.js';
+} from './translateUtils.mjs';
 
 describe('translateUtils', () => {
   describe('buildTranslateUrl', () => {

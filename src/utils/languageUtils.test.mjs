@@ -4,7 +4,7 @@ import {
   getTranslationDirection, 
   getLanguageDisplayName, 
   getPlaceholderText 
-} from './languageUtils.js';
+} from './languageUtils.mjs';
 
 describe('languageUtils', () => {
   describe('detectLanguage', () => {

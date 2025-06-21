@@ -9,7 +9,7 @@
  * @param {string} targetLang - 翻訳先言語 ('en' または 'ja')
  * @returns {string} 完全なAPI URL
  */
-function buildTranslateUrl(text, sourceLang, targetLang) {
+export function buildTranslateUrl(text, sourceLang, targetLang) {
   const baseUrl = 'https://translate.googleapis.com/translate_a/single';
   const params = new URLSearchParams({
     client: 'gtx',
@@ -27,7 +27,7 @@ function buildTranslateUrl(text, sourceLang, targetLang) {
  * @returns {string} 翻訳されたテキスト
  * @throws {Error} レスポンス形式が無効な場合
  */
-function parseTranslateResponse(responseData) {
+export function parseTranslateResponse(responseData) {
   if (!responseData || !responseData[0] || !Array.isArray(responseData[0])) {
     throw new Error('Invalid response format');
   }
@@ -40,7 +40,7 @@ function parseTranslateResponse(responseData) {
  * @param {string} direction - 翻訳方向 ('en-ja' または 'ja-en')
  * @returns {Array<string>} [sourceLang, targetLang]
  */
-function getLanguagePair(direction) {
+export function getLanguagePair(direction) {
   return direction.split('-');
 }
 
@@ -49,13 +49,6 @@ function getLanguagePair(direction) {
  * @param {string} text - チェックするテキスト
  * @returns {boolean} 翻訳可能な場合true
  */
-function isTranslatable(text) {
+export function isTranslatable(text) {
   return !!(text && typeof text === 'string' && text.trim().length > 0);
 }
-
-module.exports = {
-  buildTranslateUrl,
-  parseTranslateResponse,
-  getLanguagePair,
-  isTranslatable
-};
