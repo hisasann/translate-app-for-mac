@@ -17,7 +17,8 @@
     "test:web": "npm run build:web && npm run serve:web",
     "postinstall": "electron-builder install-app-deps",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,html,css}\" --ignore-path .prettierignore"
   },
   "build": {
     "appId": "com.yourname.translate-app",
@@ -96,7 +97,8 @@
     "eslint": "^8.57.1",
     "globals": "^16.2.0",
     "http-server": "^14.1.1",
-    "playwright": "^1.53.0"
+    "playwright": "^1.53.0",
+    "prettier": "^3.5.3"
   },
   "dependencies": {
     "axios": "^1.7.0",

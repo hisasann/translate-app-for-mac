@@ -1,115 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>翻訳アプリ - Web版</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        /* Web版用の追加スタイル */
+      /* Web版用の追加スタイル */
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+
+      /* PWAサポート用 */
+      @media (display-mode: standalone) {
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+          padding-top: 20px;
         }
-        
-        /* PWAサポート用 */
-        @media (display-mode: standalone) {
-            body {
-                padding-top: 20px;
-            }
+      }
+
+      /* レスポンシブデザインの強化 */
+      @media (max-width: 768px) {
+        .translator-container {
+          flex-direction: column;
+          gap: 1rem;
         }
-        
-        /* レスポンシブデザインの強化 */
-        @media (max-width: 768px) {
-            .translator-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .input-section, .output-section {
-                width: 100%;
-            }
-            
-            .controls {
-                order: 3;
-                width: 100%;
-                text-align: center;
-            }
+
+        .input-section,
+        .output-section {
+          width: 100%;
         }
-        
-        /* Web版用のヘッダー強化 */
-        header {
-            position: relative;
-            z-index: 10;
+
+        .controls {
+          order: 3;
+          width: 100%;
+          text-align: center;
         }
-        
-        header::after {
-            content: '🌐 Web版';
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
+      }
+
+      /* Web版用のヘッダー強化 */
+      header {
+        position: relative;
+        z-index: 10;
+      }
+
+      header::after {
+        content: '🌐 Web版';
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <header>
-            <h1>Translate App</h1>
-        </header>
-        
-        <main class="translator-container">
-            <div class="input-section">
-                <div class="language-selector">
-                    <label>英語</label>
-                </div>
-                <textarea 
-                    id="englishText" 
-                    placeholder="英語のテキストを入力してください..."
-                    rows="15"
-                ></textarea>
-            </div>
-            
-            <div class="controls">
-                <button id="clearBtn" class="clear-btn">
-                    クリア
-                </button>
-            </div>
-            
-            <div class="output-section">
-                <div class="language-selector">
-                    <label>日本語</label>
-                </div>
-                <textarea 
-                    id="japaneseText" 
-                    placeholder="翻訳結果が表示されます..."
-                    rows="15"
-                    readonly
-                ></textarea>
-            </div>
-        </main>
-        
-        <div id="loading" class="loading hidden">
-            <div class="spinner"></div>
-            <span>翻訳中...</span>
+      <header>
+        <h1>Translate App</h1>
+      </header>
+
+      <main class="translator-container">
+        <div class="input-section">
+          <div class="language-selector">
+            <label>英語</label>
+          </div>
+          <textarea
+            id="englishText"
+            placeholder="英語のテキストを入力してください..."
+            rows="15"
+          ></textarea>
         </div>
-        
-        <!-- Web版用の追加情報 -->
-        <footer style="text-align: center; padding: 20px; color: rgba(255,255,255,0.8); font-size: 0.9rem;">
-            <p>🌐 Web版翻訳アプリ | 
-               <a href="https://github.com/yourusername/translate-app" style="color: rgba(255,255,255,0.9);">GitHub</a> | 
-               <a href="/slides.html" style="color: rgba(255,255,255,0.9);">プレゼンテーション</a>
-            </p>
-        </footer>
+
+        <div class="controls">
+          <button id="clearBtn" class="clear-btn">クリア</button>
+        </div>
+
+        <div class="output-section">
+          <div class="language-selector">
+            <label>日本語</label>
+          </div>
+          <textarea
+            id="japaneseText"
+            placeholder="翻訳結果が表示されます..."
+            rows="15"
+            readonly
+          ></textarea>
+        </div>
+      </main>
+
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>翻訳中...</span>
+      </div>
+
+      <!-- Web版用の追加情報 -->
+      <footer
+        style="
+          text-align: center;
+          padding: 20px;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.9rem;
+        "
+      >
+        <p>
+          🌐 Web版翻訳アプリ |
+          <a
+            href="https://github.com/yourusername/translate-app"
+            style="color: rgba(255, 255, 255, 0.9)"
+            >GitHub</a
+          >
+          |
+          <a href="/slides.html" style="color: rgba(255, 255, 255, 0.9)"
+            >プレゼンテーション</a
+          >
+        </p>
+      </footer>
     </div>
-    
+
     <!-- Web版用のレンダラーを読み込み -->
     <script src="web-renderer.js"></script>
-</body>
+  </body>
 </html>

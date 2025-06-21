@@ -4,8 +4,12 @@ class TranslateApp {
   constructor() {
     this.inputTextarea = document.getElementById('englishText');
     this.outputTextarea = document.getElementById('japaneseText');
-    this.inputLabel = document.querySelector('.input-section .language-selector label');
-    this.outputLabel = document.querySelector('.output-section .language-selector label');
+    this.inputLabel = document.querySelector(
+      '.input-section .language-selector label'
+    );
+    this.outputLabel = document.querySelector(
+      '.output-section .language-selector label'
+    );
     this.clearBtn = document.getElementById('clearBtn');
     this.loading = document.getElementById('loading');
     this.translateTimeout = null;
@@ -53,13 +57,13 @@ class TranslateApp {
   // UIを更新する関数
   updateUI(inputLang, outputLang) {
     const labels = {
-      'en': '英語',
-      'ja': '日本語'
+      en: '英語',
+      ja: '日本語',
     };
 
     const placeholders = {
-      'en': '英語のテキストを入力してください...',
-      'ja': '日本語のテキストを入力してください...'
+      en: '英語のテキストを入力してください...',
+      ja: '日本語のテキストを入力してください...',
     };
 
     this.inputLabel.textContent = labels[inputLang];
@@ -110,7 +114,9 @@ class TranslateApp {
       this.outputTextarea.style.color = '#475569';
     } catch (error) {
       console.error('Translation error:', error);
-      this.showError('翻訳に失敗しました。インターネット接続を確認してください。');
+      this.showError(
+        '翻訳に失敗しました。インターネット接続を確認してください。'
+      );
     } finally {
       this.showLoading(false);
     }
@@ -125,7 +131,7 @@ class TranslateApp {
       sl: sourceLang,
       tl: targetLang,
       dt: 't',
-      q: text
+      q: text,
     });
 
     const response = await fetch(`${url}?${params}`);
@@ -140,7 +146,7 @@ class TranslateApp {
       throw new Error('Invalid response format');
     }
 
-    return data[0].map(item => item[0]).join('');
+    return data[0].map((item) => item[0]).join('');
   }
 
   clearText() {

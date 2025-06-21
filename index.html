@@ -1,48 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>翻訳アプリ</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <header>
-            <h1>Translate App</h1>
-        </header>
+      <header>
+        <h1>Translate App</h1>
+      </header>
 
-        <main class="translator-container">
-            <div class="input-section">
-                <div class="language-selector">
-                    <label>英語</label>
-                </div>
-                <textarea id="englishText" placeholder="英語のテキストを入力してください..." rows="15"></textarea>
-            </div>
-
-            <div class="controls">
-                <button id="clearBtn" class="clear-btn">
-                    クリア
-                </button>
-            </div>
-
-            <div class="output-section">
-                <div class="language-selector">
-                    <label>日本語</label>
-                </div>
-                <textarea id="japaneseText" placeholder="翻訳結果が表示されます..." rows="15" readonly></textarea>
-            </div>
-        </main>
-
-        <div id="loading" class="loading hidden">
-            <div class="spinner"></div>
-            <span>翻訳中...</span>
+      <main class="translator-container">
+        <div class="input-section">
+          <div class="language-selector">
+            <label>英語</label>
+          </div>
+          <textarea
+            id="englishText"
+            placeholder="英語のテキストを入力してください..."
+            rows="15"
+          ></textarea>
         </div>
+
+        <div class="controls">
+          <button id="clearBtn" class="clear-btn">クリア</button>
+        </div>
+
+        <div class="output-section">
+          <div class="language-selector">
+            <label>日本語</label>
+          </div>
+          <textarea
+            id="japaneseText"
+            placeholder="翻訳結果が表示されます..."
+            rows="15"
+            readonly
+          ></textarea>
+        </div>
+      </main>
+
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>翻訳中...</span>
+      </div>
     </div>
 
     <script src="renderer.js"></script>
-</body>
-
+  </body>
 </html>
