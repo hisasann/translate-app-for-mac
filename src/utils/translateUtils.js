@@ -50,5 +50,5 @@ export function getLanguagePair(direction) {
  * @returns {boolean} 翻訳可能な場合true
  */
 export function isTranslatable(text) {
-  return text && typeof text === 'string' && text.trim().length > 0;
+  return !!(text && typeof text === 'string' && text.trim().length > 0);
 }
