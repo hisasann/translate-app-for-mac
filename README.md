@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/translate-app-cover.png" alt="Translate App Cover" width="400"/>
+</p>
+
 # 🌍 Translate App
 
 美しい黄色ベースのデザインを持つ、英語⇄日本語双方向翻訳アプリです。言語を自動検出して適切な方向に翻訳します。
